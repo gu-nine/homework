@@ -4,16 +4,14 @@ on: [push, pull_request]
 
 jobs:
   test:
-    runs-on: self-hosted  # or use 'ubuntu-latest' if you're not using self-hosted runner
+    runs-on: self-hosted  # 네 맥북에서 실행할 때는 이걸로!
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'  # 원하는 버전으로 바꿔도 됨
+      - name: Check Python version
+        run: python3 --version
 
       - name: Run tests
-        run: python -m unittest app_test.py
+        run: python3 -m unittest app_test.py
