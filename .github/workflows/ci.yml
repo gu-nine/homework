@@ -1,0 +1,19 @@
+name: Python CI
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: self-hosted  # or use 'ubuntu-latest' if you're not using self-hosted runner
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'  # 원하는 버전으로 바꿔도 됨
+
+      - name: Run tests
+        run: python -m unittest app_test.py
